@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Revision Exercises</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--tx:#1f2430;--mut:#666d80;--bd:#dfe3ee;--ac:#4f46e5;--ok:#16a34a;--okb:#dcfce7;--no:#dc2626;--nob:#fee2e2;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--card:#1e212b;--tx:#eceef5;--mut:#9aa1b5;--bd:#333847;--ac:#8b85ff;--ok:#4ade80;--okb:#14532d;--no:#f87171;--nob:#5b1c1c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161d;--card:#1e212b;--tx:#eceef5;--mut:#9aa1b5;--bd:#333847;--ac:#8b85ff;--ok:#4ade80;--okb:#14532d;--no:#f87171;--nob:#5b1c1c;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;margin:8px 0 4px}
+.sub{color:var(--mut);margin:0 0 16px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;z-index:5}
+.tab{flex:1;min-width:140px;padding:10px 12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;cursor:pointer;font:inherit;font-weight:600}
+.tab.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.instr{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.q{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px}
+.q p{margin:0 0 10px}
+.q .n{font-weight:700;color:var(--ac);margin-right:6px}
+.txt{background:var(--bg);border-radius:8px;padding:10px 12px;margin-bottom:10px;font-style:italic}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:520px){.opts{grid-template-columns:1fr}}
+.opt{text-align:left;padding:9px 12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:8px;cursor:pointer;font:inherit}
+.opt:hover:not(:disabled){border-color:var(--ac)}
+.opt.ok{background:var(--okb);border-color:var(--ok);font-weight:600}
+.opt.no{background:var(--nob);border-color:var(--no)}
+.opt:disabled{cursor:default;color:var(--tx)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin:16px 0}
+.sc{font-weight:700}
+.btn{padding:9px 16px;border:0;border-radius:8px;background:var(--ac);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+.pg{height:6px;background:var(--bd);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.pg i{display:block;height:100%;width:0;background:var(--ac);transition:width .3s}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>English Revision</h1>
+<p class="sub">Інтерактивні вправи для повторення вивченого матеріалу</p>
+<div class="tabs" id="tabs"></div>
+<div id="app"></div>
+</div>
+<script>
+const EX=[
+{t:"1. Food Vocabulary",ins:"Choose the correct answer (A, B, C or D) to complete each sentence.",items:[
+["You need to ______ the cheese before adding it to the pasta.",["peel","grate","steam","chop"],1],
+["This soup is rather ______. It needs more salt and spices.",["juicy","spicy","bland","tender"],2],
+["The chicken is so ______ that you can cut it easily with a fork.",["tender","stale","greasy","tough"],0],
+["I have a strong ______ for chocolate whenever I feel stressed.",["portion","condiment","appetite","craving"],3],
+["Please ______ the onions into small pieces.",["pour","chop","beat","peel"],1],
+["I prefer still water to ______ drinks like cola and lemonade.",["fizzy","fresh","sour","savoury"],0],
+["The meat was ______ because we left it in the oven for too long.",["raw","juicy","overcooked","tender"],2],
+["After running for an hour, I needed some water to ______.",["pile on the pounds","skip lunch","resist the urge","quench my thirst"],3],
+["Fast food is often very ______ because it contains a lot of oil.",["light","greasy","fresh","bland"],1],
+["Can you ______ the potatoes before boiling them?",["grate","slice","peel","stir"],2],
+["My little brother likes to ______ on crisps while watching TV.",["munch","swallow","sip","pour"],0],
+["I prefer ______ dishes, such as cheese pies and roasted vegetables, to sweet food.",["fizzy","juicy","tart","savoury"],3],
+["These vegetables are locally grown and completely ______.",["stale","fresh","overripe","mouldy"],1],
+["We went to an all-you-can-eat restaurant and decided to ______.",["skip lunch","shed a few pounds","pig out","feel peckish"],2],
+["You should ______ vegetables to preserve more of their nutrients.",["steam","fry","grill","bake"],0],
+["These biscuits are ______ because the packet was left open for several days.",["tasty","tender","juicy","stale"],3],
+["I love ______ food, especially dishes with chilli and hot peppers.",["bland","spicy","plain","sweet"],1],
+["She took a small ______ of her tea because it was very hot.",["bite","chew","sip","gulp"],2],
+["The restaurant is popular because it serves ______, so nobody leaves hungry.",["generous portions","limited selection","poor service","small portions"],0],
+["I wanted another slice of cake, but I tried to ______ and said no.",["pig out","quench my thirst","skip lunch","resist the urge"],3]
+]},
+{t:"2. Present Perfect / Continuous & Question Tags",ins:"Parts 1–15: choose Present Perfect or Present Perfect Continuous. Parts 16–20: choose the correct question tag.",items:[
+["I ______ (read) this book for three hours.",["have read","have been reading"],1],
+["She ______ (finish) her homework, so she can go out now.",["has finished","has been finishing"],0],
+["They ______ (cook) since morning, and the kitchen smells great.",["have cooked","have been cooking"],1],
+["I ______ (eat) three pieces of pizza today.",["have eaten","have been eating"],0],
+["How long ______ you ______ (learn) English?",["have / learned","have / been learning"],1],
+["He ______ (just / bake) a cake. Come and try it!",["has just baked","has just been baking"],0],
+["Her hands are covered in flour because she ______ (make) bread.",["has made","has been making"],1],
+["We ______ (try) lots of new dishes this year. We’ve tried ten already.",["have tried","have been trying"],0],
+["It ______ (rain) all day, so we stayed in and cooked.",["has rained","has been raining"],1],
+["How many cups of coffee ______ you ______ (drink) today?",["have / drunk","have / been drinking"],0],
+["He is tired because he ______ (stand) in the kitchen all day.",["has stood","has been standing"],1],
+["I ______ (lose) my wallet, so I can’t pay for lunch.",["have lost","have been losing"],0],
+["She ______ (wait) for the pizza delivery for forty minutes.",["has waited","has been waiting"],1],
+["They ______ (open) a new café in our street. It’s very popular!",["have opened","have been opening"],0],
+["Why are your eyes red? ______ you ______ (cut) onions?",["Have / cut","Have / been cutting"],1],
+["You like pasta, ______?",["don’t you","do you","aren’t you","won’t you"],0],
+["She hasn’t tried sushi, ______?",["hasn’t she","has she","is she","does she"],1],
+["Let’s order a pizza, ______?",["will we","don’t we","shall we","shan’t we"],2],
+["They have been cooking all day, ______?",["haven’t they","don’t they","aren’t they","have they"],0],
+["I am late for dinner, ______?",["amn’t I","aren’t I","am I","isn’t I"],1]
+]},
+{t:"3. Reading",ins:"Level B2+. Read each text carefully. Questions 1–5: choose the correct answer. Questions 6–10: decide whether the statement is True or False according to the text.",items:[
+["What is the food industry’s main objection to the term “ultra-processed”?", ["It is too recent to be scientifically valid", "It groups together products of very different nutritional value", "It ignores the role of additives", "It blames consumers rather than producers"], 1, "Over the past decade, nutrition scientists have grown increasingly wary of ultra-processed foods: packaged snacks, sugary cereals and ready meals containing additives rarely found in a home kitchen. Critics argue that these products are engineered to be hyper-palatable, encouraging people to eat far more than they need. Defenders of the industry, however, point out that the label is so broad that it lumps fizzy drinks together with wholegrain bread and fortified yoghurt, which can hardly be considered equally harmful."],
+["What does the text suggest about food waste in developing regions?", ["Households there waste more edible leftovers", "Supermarkets cause most of the losses", "Most losses occur before the food reaches consumers", "The problem is smaller than in wealthy countries"], 2, "Roughly a third of all food produced worldwide is never eaten. While households in wealthier countries tend to throw away edible leftovers, in developing regions the losses occur mainly before the food reaches the consumer, owing to inadequate storage and transport infrastructure. Some supermarkets have begun selling misshapen vegetables at a discount, but campaigners insist that such initiatives merely scratch the surface of a systemic problem."],
+["What was the consequence of Elena’s decision to buy from local farms?", ["A financial setback followed by growing popularity", "An immediate increase in profits", "A complete redesign of the menu", "The loss of many loyal customers"], 0, "When Elena took over her grandfather’s restaurant, she was tempted to modernise the menu entirely. Instead, she kept the classic dishes but sourced her ingredients from small local farms, a decision that initially dented her profits because the suppliers were costlier. Within two years, though, word of mouth had turned the place into a destination for food tourists, and she was turning away bookings."],
+["Why do scientists urge caution about fermented foods?", ["Research has shown they harm gut bacteria", "They are too expensive for most people", "Pasteurisation makes them unsafe to eat", "The evidence is limited and some products lack live cultures"], 3, "Fermented foods such as kimchi, kefir and sourdough have enjoyed a revival, partly because of research linking gut bacteria to mood and immunity. Nevertheless, scientists urge caution: most studies are small, and any benefit depends on whether the product still contains live cultures, which many shop-bought versions lack after pasteurisation."],
+["What can be inferred from the text about taste preferences?", ["They are fixed at birth", "Cultural environment and repeated exposure strongly influence them", "Bitter foods are generally unhealthy", "Children naturally dislike all vegetables"], 1, "Our food preferences are shaped less by biology than we tend to assume. Although humans are born with an aversion to bitterness, children raised in cultures where bitter vegetables are common learn to enjoy them through repeated exposure. This explains why a dish regarded as an acquired taste in one country may be an everyday comfort food in another."],
+["Statement: The review found intermittent fasting to be more effective for weight loss than conventional diets.", ["True", "False"], 1, "Intermittent fasting has attracted a large following, with some people claiming it boosts energy and sharpens concentration. Yet a recent review concluded that, as far as weight loss is concerned, it performs no better than conventional calorie-controlled diets. The researchers added that its main advantage may simply be that some people find straightforward rules easier to follow."],
+["Statement: Inspectors advise choosing street food stalls that are popular with many customers.", ["True", "False"], 0, "Street food is often dismissed as unhygienic, but surveys in several Asian cities suggest otherwise: because vendors cook to order in front of customers, the ingredients tend to be fresh and their reputations depend on repeat custom. Nevertheless, health inspectors stress that standards vary widely and recommend choosing stalls with a high turnover of customers."],
+["Statement: The text claims that coffee is harmful regardless of how much is consumed.", ["True", "False"], 1, "Coffee has long been blamed for a range of health problems, but the evidence is far less alarming than once believed. Moderate consumption, around three to four cups a day, has been linked with a lower risk of certain diseases in adults. That said, excessive intake can disrupt sleep, and pregnant women are generally advised to cut down."],
+["Statement: According to the text, organic food is significantly richer in nutrients than conventional food.", ["True", "False"], 1, "Organic produce commands a premium price, and many shoppers assume it is considerably more nutritious. In fact, most comparisons have found only marginal differences in nutrient content. The real distinction lies in farming methods: organic growers use fewer synthetic pesticides, which some consumers consider reason enough to pay more."],
+["Statement: One effect of sugar taxes has been that some manufacturers changed their recipes.", ["True", "False"], 0, "Several countries have introduced taxes on sugary drinks in an attempt to curb obesity. Early evidence suggests the measure has prompted manufacturers to reformulate their recipes with less sugar, rather than causing a dramatic fall in sales. Critics argue that such taxes disproportionately affect lower-income households, whereas supporters claim the revenue can fund healthier school meals."]
+]}];
+const st=EX.map(e=>({a:{},done:0,sc:0}));let cur=0;
+const LB=["Vocabulary","Grammar","Reading"];
+const PT=[0,0,1,1,1,0,1,0,0,1,0,1,1,0,0];
+EX[1].items.slice(0,15).forEach((it,i)=>{if(it[2]!==PT[i]){it[1].reverse();it[2]=1-it[2]}});
+const $=s=>document.querySelector(s);
+function tabs(){$("#tabs").innerHTML=EX.map((e,i)=>`<button class="tab ${i==cur?'on':''}" onclick="go(${i})">${LB[i]} <span style="opacity:.8">(${st[i].done}/${e.items.length})</span></button>`).join("")+`<button class="tab ${cur==3?'on':''}" onclick="go(3)">Results</button>`}
+function go(i){cur=i;render();window.scrollTo(0,0)}
+function render(){
+ if(cur==3)return results();
+ const e=EX[cur],s=st[cur];tabs();
+ let h=`<div class="instr"><b>${e.t}</b><br>${e.ins}</div><div class="pg"><i style="width:${s.done/e.items.length*100}%"></i></div>`;
+ e.items.forEach((it,i)=>{
+  const ans=s.a[i],L="ABCD";
+  const two=cur==1&&i<15;
+  h+=`<div class="q">${it[3]?`<div class="txt">${it[3]}</div>`:""}<p><span class="n">${i+1}.</span>${it[0]}</p><div class="opts" style="${it[1].length==2&&!two?'grid-template-columns:1fr 1fr':''}">`;
+  it[1].forEach((o,j)=>{
+   let c="";if(ans!==undefined){if(j==it[2])c="ok";else if(j==ans)c="no"}
+   const lab=(it[1].length==4)?L[j]+") ":"";
+   h+=`<button class="opt ${c}" ${ans!==undefined?'disabled':''} onclick="pick(${i},${j})">${lab}${o}</button>`});
+  h+=`</div></div>`});
+ h+=`<div class="bar"><span class="sc">Score: ${s.sc} / ${e.items.length} (${Math.round(s.sc/e.items.length*100)}%)</span><span style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" style="background:var(--mut)" onclick="reset()">Try again</button><button class="btn" onclick="go(${cur+1})">${cur<2?'Next exercise →':'See final results →'}</button></span></div>`;
+ if(s.done==e.items.length){const p=Math.round(s.sc/e.items.length*100);h+=`<div class="instr"><b>Finished!</b> Result: ${p}%. ${p>=80?"Great job! 🎉":p>=50?"Good effort — review the mistakes and try again.":"Keep practising — you can do it!"}</div>`}
+ $("#app").innerHTML=h}
+function pick(i,j){const s=st[cur];if(s.a[i]!==undefined)return;s.a[i]=j;s.done++;if(j==EX[cur].items[i][2])s.sc++;const y=window.scrollY;render();window.scrollTo(0,y)}
+function reset(){st[cur]={a:{},done:0,sc:0};render();window.scrollTo(0,0)}
+function results(){tabs();let tot=0,h=`<div class="instr"><b>Final results</b><br>Кожна вправа оцінюється у 100%. Підсумок — середній результат.</div>`;EX.forEach((e,i)=>{const p=Math.round(st[i].sc/e.items.length*100);tot+=p;h+=`<div class="bar"><span>${LB[i]}${st[i].done<e.items.length?` <i style="color:var(--mut)">(not finished: ${st[i].done}/${e.items.length})</i>`:''}</span><span class="sc">${p}%</span></div>`});const avg=Math.round(tot/EX.length);h+=`<div class="bar"><span class="sc">Average result</span><span class="sc" style="font-size:1.4rem;color:var(--ac)">${avg}%</span></div><button class="btn" onclick="resetAll()">Start over</button>`;$("#app").innerHTML=h}
+function resetAll(){EX.forEach((e,i)=>{st[i]={a:{},done:0,sc:0}});go(0)}
+render();
+</script>
+</body>
+</html>
